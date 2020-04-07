@@ -344,26 +344,26 @@ def update_parameters(params,grads,opt_params,layers_number,learning_rate,optimi
             params["W"+str(layer)] -= learning_rate* grads["dW"+str(layer)]
             params["b"+str(layer)] -= learning_rate* grads["db"+str(layer)]
     return params,opt_params
-def test(X,params,l_param):
-    A=X
-    L=len(l_param["dim"])
-    for i in range(1,L+1):
-        W=params["W"+str(i)]
-        b=params["b"+str(i)]
-        Z=np.dot(W,A)+b # z shape should be m*1
-        A=activation(Z,l_param["activation"][i-1])
-    if l_param["activation"][L-1]=="softmax":
-        A_max=np.amax(A,axis=0,keepdims=True)
-        if(np.sum(A_max)==0):
-            print("zero error")
-        Y_pred=(A>=A_max).astype(np.int)
-    else :
-        for j in range(m):
-            if(A[0][j]>0.5):
-                Y_pred[0][j]=1
-            else:
-                Y_pred[0][j]=0 
-    return Y_pred
+# def test(X,params,l_param):
+#     A=X
+#     L=len(l_param["dim"])
+#     for i in range(1,L+1):
+#         W=params["W"+str(i)]
+#         b=params["b"+str(i)]
+#         Z=np.dot(W,A)+b # z shape should be m*1
+#         A=activation(Z,l_param["activation"][i-1])
+#     if l_param["activation"][L-1]=="softmax":
+#         A_max=np.amax(A,axis=0,keepdims=True)
+#         if(np.sum(A_max)==0):
+#             print("zero error")
+#         Y_pred=(A>=A_max).astype(np.int)
+#     else :
+#         for j in range(m):
+#             if(A[0][j]>0.5):
+#                 Y_pred[0][j]=1
+#             else:
+#                 Y_pred[0][j]=0 
+#     return Y_pred
     
 
 
